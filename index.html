@@ -4,182 +4,165 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="KIMA Beauty Lounge — صالون نسائي فاخر في الدار البيضاء. خدمات شعر، بشرة، مكياج وعناية شاملة. احجزي موعدك الآن."/>
-  <meta name="keywords" content="KIMA Beauty Lounge, صالون نسائي, كيما بيوتي، الدار البيضاء، حجز موعد، عناية بالشعر"/>
+  <meta name="keywords" content="KIMA Beauty Lounge, صالون نسائي, كيما بيوتي، الدار البيضاء، حجز موعد"/>
   <meta name="author" content="KIMA Beauty Lounge"/>
   <meta property="og:title" content="KIMA Beauty Lounge — لمسة أنوثة راقية"/>
-  <meta property="og:description" content="صالون نسائي فاخر في الدار البيضاء — خدمات متميزة للشعر، البشرة والجمال"/>
+  <meta property="og:description" content="صالون نسائي فاخر في الدار البيضاء"/>
   <meta property="og:type" content="business.local"/>
   <meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80"/>
   <meta name="theme-color" content="#c9a84c"/>
   <title>KIMA Beauty Lounge — لمسة أنوثة راقية</title>
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "BeautySalon",
-    "name": "KIMA Beauty Lounge",
-    "description": "صالون نسائي فاخر للعناية بالشعر، البشرة، والجمال",
-    "telephone": "+212777005881",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "حي مولاي عبد الله / شارع القدس",
-      "addressLocality": "الدار البيضاء",
-      "addressCountry": "MA"
-    },
-    "openingHours": "Mo-Sa 10:00-21:00",
-    "priceRange": "40-800 MAD"
+    "@context":"https://schema.org","@type":"BeautySalon",
+    "name":"KIMA Beauty Lounge",
+    "telephone":"+212777005881",
+    "address":{"@type":"PostalAddress","streetAddress":"حي مولاي عبد الله / شارع القدس","addressLocality":"الدار البيضاء","addressCountry":"MA"},
+    "openingHours":"Mo-Sa 10:00-21:00","priceRange":"40-800 MAD"
   }
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet"/>
-
-  <!-- QRCode.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-  <!-- App Styles -->
   <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    /* ── Slot pill enhanced for duration display ── */
+    .slot-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 0.4rem 0.2rem;
+      min-height: 52px;
+    }
+    .slot-time {
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .slot-end {
+      font-size: 0.68rem;
+      opacity: 0.7;
+      line-height: 1;
+    }
+    .slot-fire {
+      font-size: 0.7rem;
+      line-height: 1;
+    }
+    .slot-pill.selected .slot-end { opacity: 1; }
+
+    /* Staff group animate in */
+    #staff-group {
+      animation: fadeUp 0.4s ease both;
+    }
+    /* Slot note */
+    #slot-note {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Booking card compact */
+    .booking-id { font-family: 'Courier New', monospace; font-size: 0.78rem !important; color: var(--gold) !important; word-break: break-all; }
+
+    /* Modal scroll on small screens */
+    .modal-box { max-height: 92vh; overflow-y: auto; }
+
+    /* QR container */
+    #qr-container {
+      margin: 0.75rem auto;
+      display: inline-flex;
+      justify-content: center;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.2);
+    }
+  </style>
 </head>
 <body dir="rtl">
 
-  <!-- ══════════════════════════════════════════
-       NAVBAR
-  ══════════════════════════════════════════ -->
+  <!-- NAVBAR -->
   <nav id="navbar"></nav>
 
   <!-- Mobile Nav Overlay -->
   <div class="nav-overlay" id="nav-overlay">
-    <ul class="nav-links" id="mobile-nav-links">
-      <!-- Rendered by JS -->
-    </ul>
-    <button class="btn-book-nav" onclick="scrollToSection('booking');closeMobileNav();" style="font-size:1.1rem;padding:0.75rem 2rem;"></button>
+    <ul class="nav-links" id="mobile-nav-links"></ul>
+    <button class="btn-book-nav" style="font-size:1.1rem;padding:0.75rem 2rem;margin-top:1rem;"
+      onclick="scrollToSection('booking');closeMobileNav();">احجزي الآن</button>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       MAIN CONTENT
-  ══════════════════════════════════════════ -->
+  <!-- MAIN -->
   <main>
-
-    <!-- HERO -->
     <section id="hero"></section>
-
-    <!-- SERVICES -->
     <section id="services"></section>
-
-    <!-- BOOKING -->
     <section id="booking"></section>
-
-    <!-- TESTIMONIALS -->
     <section id="testimonials"></section>
-
-    <!-- PACKS -->
     <section id="packs"></section>
-
-    <!-- CONTACT -->
     <section id="contact"></section>
-
   </main>
 
-  <!-- FOOTER -->
   <footer id="footer"></footer>
 
-  <!-- ══════════════════════════════════════════
-       WHATSAPP FAB
-  ══════════════════════════════════════════ -->
+  <!-- WhatsApp FAB -->
   <a class="wa-fab" href="https://wa.me/212777005881" target="_blank" aria-label="WhatsApp">
     <div class="wa-fab-icon">💬</div>
     <span class="wa-fab-label" id="wa-fab-label">تواصلي معنا</span>
   </a>
 
-  <!-- ══════════════════════════════════════════
-       BOOKING CONFIRMATION MODAL
-  ══════════════════════════════════════════ -->
+  <!-- Booking Confirmation Modal -->
   <div class="modal-overlay" id="booking-modal">
-    <div class="modal-box" id="modal-inner">
-      <!-- Rendered dynamically -->
-    </div>
+    <div class="modal-box" id="modal-inner"></div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       PASSWORD MODAL (Admin Access)
-  ══════════════════════════════════════════ -->
+  <!-- Password Modal -->
   <div class="pw-modal" id="pw-modal">
     <div class="pw-box">
-      <div style="font-size:2rem;margin-bottom:0.5rem;">🔐</div>
+      <div style="font-size:2.5rem;margin-bottom:0.5rem;">🔐</div>
       <h3>لوحة التحكم</h3>
-      <p>أدخلي كلمة المرور للمتابعة</p>
+      <p style="margin-bottom:1.25rem;">أدخلي كلمة المرور للمتابعة</p>
       <input class="pw-input" type="password" id="pw-input" placeholder="••••••••" autocomplete="off"/>
       <div class="pw-error" id="pw-error"></div>
-      <button class="btn-pw-enter" onclick="submitPassword()">دخول</button>
-      <br/>
+      <button class="btn-pw-enter" onclick="submitPassword()">دخول →</button><br/>
       <button class="btn-pw-cancel" onclick="closePasswordModal()">إلغاء</button>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       ADMIN DASHBOARD
-  ══════════════════════════════════════════ -->
+  <!-- Admin Dashboard -->
   <div id="admin-screen">
-    <div class="admin-sidebar" id="admin-sidebar">
-      <!-- Rendered dynamically -->
-    </div>
+    <div class="admin-sidebar" id="admin-sidebar"></div>
     <div class="admin-content">
-      <!-- Overview Panel -->
-      <div class="admin-panel" id="panel-overview">
-        <!-- Rendered dynamically -->
-      </div>
-      <!-- Appointments Panel -->
-      <div class="admin-panel" id="panel-appointments">
-        <!-- Rendered dynamically -->
-      </div>
-      <!-- Analytics Panel -->
-      <div class="admin-panel" id="panel-analytics">
-        <!-- Rendered dynamically -->
-      </div>
+      <div class="admin-panel" id="panel-overview"></div>
+      <div class="admin-panel" id="panel-appointments"></div>
+      <div class="admin-panel" id="panel-analytics"></div>
     </div>
   </div>
 
-  <!-- App Script -->
   <script src="app.js"></script>
-
-  <!-- Mobile nav content update after lang render -->
   <script>
-    // Update mobile nav overlay after app renders
-    const origRenderNavbar = window.renderAll;
+    // Sync mobile nav after render
     document.addEventListener('DOMContentLoaded', () => {
-      // Update WAB label on lang change
-      const observer = new MutationObserver(() => {
-        const label = document.getElementById('wa-fab-label');
-        if (label && window.App) {
-          label.textContent = window.App.lang === 'ar' ? 'تواصلي معنا' : 'Nous contacter';
-        }
-      });
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-
-      // Mobile nav clone after main renders
       setTimeout(() => {
         const mainLinks = document.querySelector('#navbar .nav-links');
         const mobileLinks = document.getElementById('mobile-nav-links');
-        const mobileBtn = document.querySelector('.nav-overlay .btn-book-nav');
         if (mainLinks && mobileLinks) {
           mobileLinks.innerHTML = mainLinks.innerHTML;
           mobileLinks.querySelectorAll('a').forEach(a => {
-            a.onclick = () => {
-              const href = a.getAttribute('href').replace('#','');
-              window.scrollToSection(href);
-              window.closeMobileNav();
-            };
+            const href = (a.getAttribute('href')||'').replace('#','');
+            a.onclick = (e) => { e.preventDefault(); if(window.scrollToSection) window.scrollToSection(href); window.closeMobileNav && window.closeMobileNav(); };
           });
         }
-        if (mobileBtn && window.App) {
-          mobileBtn.textContent = window.App.lang === 'ar' ? 'احجزي الآن' : 'Réserver';
-        }
-      }, 500);
+      }, 600);
     });
   </script>
-
 </body>
 </html>

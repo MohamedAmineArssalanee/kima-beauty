@@ -21,8 +21,8 @@
   "staff": [
     {
       "id": "s1",
-      "nameAr": "فاطمة",
-      "nameFr": "Fatima",
+      "nameAr": "حكيمة",
+      "nameFr": "Hakima",
       "roleAr": "متخصصة شعر وبشرة",
       "roleFr": "Spécialiste Cheveux & Visage",
       "specialties": ["hair","skin","wax","hammam","makeup"],
@@ -30,8 +30,8 @@
     },
     {
       "id": "s2",
-      "nameAr": "نورة",
-      "nameFr": "Nora",
+      "nameAr": "سليمة",
+      "nameFr": "Salima",
       "roleAr": "متخصصة شعر وبشرة",
       "roleFr": "Spécialiste Cheveux & Visage",
       "specialties": ["hair","skin","wax","hammam","makeup"],
@@ -39,8 +39,8 @@
     },
     {
       "id": "s3",
-      "nameAr": "سارة",
-      "nameFr": "Sara",
+      "nameAr": "وصال",
+      "nameFr": "wissal",
       "roleAr": "متخصصة أظافر",
       "roleFr": "Spécialiste Ongles",
       "specialties": ["nails"],

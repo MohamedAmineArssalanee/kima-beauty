@@ -68,74 +68,153 @@ function toggleLang() { applyLang(App.lang === 'ar' ? 'fr' : 'ar'); renderAll();
 function t(key) { return App.data?.translations?.[App.lang]?.[key] || key; }
 
 /* ══════════════════════════════════════════
-   LOGO — Faithful recreation of uploaded image
-   White circle · gold line-art woman facing left
-   hair in elegant updo with loose strands
-   Bold black "KIMA" · gold script "Beauty Lounge"
+   LOGO — Faithful SVG recreation of uploaded mockup
+   • No circle background — transparent
+   • Gold line-art: woman profile facing RIGHT (viewer's left)
+   • Hair swept back into a low loose bun with flowing strands
+   • Silhouette rises ABOVE the text, overlapping it slightly
+   • Bold black serif "KIMA" — large, dominant
+   • Gold italic serif "Beauty Lounge" — smaller, below KIMA
+   Viewbox 220×260 — logo + text only, no background shape
 ══════════════════════════════════════════ */
 function kimaLogo(height = 48) {
-  const w = height;
-  const h = Math.round(height * 1.18);
-  return `<svg viewBox="0 0 200 236" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-  <!-- Circle -->
-  <circle cx="100" cy="100" r="96" fill="#ffffff" stroke="#c9a84c" stroke-width="2"/>
-  <!-- Gold line-art: woman profile facing left, hair up with loose waves -->
+  const aspect = 220 / 260;
+  const w = Math.round(height * aspect);
+  const h = height;
+  return `<svg viewBox="0 0 220 260" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
   <g fill="none" stroke="#c9a84c" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Main head silhouette -->
-    <path stroke-width="1.8" d="
-      M 82 30
-      C 72 28, 60 34, 54 44
-      C 48 54, 48 66, 52 76
-      C 54 82, 55 86, 53 92
-      C 51 98, 48 104, 50 110
-      C 52 116, 60 118, 68 117
-      C 70 124, 72 130, 75 134
-    "/>
-    <!-- Chin & jaw -->
-    <path stroke-width="1.6" d="M 52 76 C 57 85, 64 90, 72 91 C 78 92, 84 90, 88 85"/>
-    <!-- Nose -->
-    <path stroke-width="1.4" d="M 54 66 C 52 70, 52 74, 55 77"/>
+
+    <!-- ── FACE — profile facing right (nose points right) ── -->
+    <!-- Forehead down to chin curve -->
+    <path stroke-width="1.6"
+      d="M 90 18
+         C 78 18, 66 26, 60 38
+         C 55 50, 56 64, 62 74
+         C 66 82, 66 88, 62 96
+         C 58 104, 55 112, 60 118
+         C 65 124, 76 124, 84 120"/>
+
+    <!-- Chin / jaw rounding -->
+    <path stroke-width="1.5"
+      d="M 62 74 C 68 84, 78 90, 88 88 C 96 86, 102 80, 104 72"/>
+
+    <!-- Nose tip (pointing right) -->
+    <path stroke-width="1.3"
+      d="M 62 60 C 60 64, 59 70, 63 73"/>
+
     <!-- Lips -->
-    <path stroke-width="1.5" d="M 58 86 C 62 89, 67 89, 70 87"/>
-    <!-- Eye -->
-    <path stroke-width="1.4" d="M 58 60 C 62 57, 67 57, 70 60"/>
-    <circle cx="64" cy="60" r="1.5" fill="#c9a84c" stroke="none"/>
+    <path stroke-width="1.4"
+      d="M 67 84 C 72 88, 80 88, 84 85"/>
+    <!-- Lower lip hint -->
+    <path stroke-width="1.1"
+      d="M 69 87 C 74 90, 80 89, 83 87"/>
+
+    <!-- Eye (right profile — single almond shape) -->
+    <path stroke-width="1.3"
+      d="M 72 52 C 78 48, 86 49, 90 53 C 86 57, 78 58, 72 52 Z"/>
+    <circle cx="81" cy="53" r="2.2" fill="#c9a84c" stroke="none"/>
+
+    <!-- Eyebrow -->
+    <path stroke-width="1.2"
+      d="M 70 46 C 77 42, 88 43, 93 47"/>
+
     <!-- Ear -->
-    <path stroke-width="1.4" d="M 50 72 C 47 74, 47 80, 50 82"/>
-    <!-- Neck & shoulder -->
-    <path stroke-width="1.8" d="M 68 117 C 70 124, 72 132, 74 136 C 80 148, 95 152, 110 148 C 118 145, 124 138, 126 130"/>
-    <!-- Hair top — updo bun structure -->
-    <path stroke-width="1.8" d="
-      M 82 30
-      C 88 24, 98 20, 108 22
-      C 118 24, 126 32, 128 42
-      C 130 52, 126 62, 120 68
-    "/>
-    <!-- Bun itself -->
-    <path stroke-width="1.7" d="
-      M 108 22
-      C 116 18, 128 18, 136 24
-      C 144 30, 146 42, 140 52
-      C 136 58, 128 62, 120 62
-      C 114 62, 108 58, 106 52
-      C 104 46, 106 38, 112 34
-    "/>
-    <!-- Bun inner curl -->
-    <path stroke-width="1.3" d="M 116 28 C 126 26, 134 32, 132 42 C 130 50, 122 54, 116 50"/>
-    <!-- Loose hair strands falling -->
-    <path stroke-width="1.6" d="M 120 62 C 124 72, 126 84, 122 94 C 118 104, 112 112, 110 120"/>
-    <path stroke-width="1.4" d="M 128 56 C 134 68, 136 82, 132 96 C 130 104, 124 112, 120 120"/>
-    <path stroke-width="1.2" d="M 136 50 C 144 64, 144 82, 138 96 C 134 106, 126 114, 122 124"/>
-    <!-- Side strands near face -->
-    <path stroke-width="1.3" d="M 86 32 C 82 42, 80 52, 82 62"/>
-    <path stroke-width="1.2" d="M 90 28 C 88 38, 86 50, 88 62"/>
+    <path stroke-width="1.3"
+      d="M 59 78 C 54 80, 53 88, 56 92 C 58 95, 62 95, 64 92"/>
+
+    <!-- Neck -->
+    <path stroke-width="1.5"
+      d="M 84 120 C 86 128, 87 136, 88 142"/>
+    <!-- Other neck side -->
+    <path stroke-width="1.4"
+      d="M 78 124 C 78 132, 78 138, 80 144"/>
+
+    <!-- Shoulder line (right shoulder going right-down) -->
+    <path stroke-width="1.5"
+      d="M 88 142 C 100 146, 118 146, 132 140 C 142 136, 148 128, 146 118"/>
+
+    <!-- ── HAIR — swept back into loose bun, right side ── -->
+
+    <!-- Main hair flow from top of head going back -->
+    <path stroke-width="1.7"
+      d="M 90 18
+         C 100 12, 116 12, 128 18
+         C 140 24, 148 36, 148 50
+         C 148 62, 142 72, 134 78"/>
+
+    <!-- Hair sweep line 1 (main flow) -->
+    <path stroke-width="1.4"
+      d="M 96 14 C 110 10, 128 14, 138 28 C 148 42, 148 58, 140 70"/>
+
+    <!-- Hair sweep line 2 -->
+    <path stroke-width="1.2"
+      d="M 100 12 C 116 8, 136 16, 144 32 C 152 48, 150 66, 142 78"/>
+
+    <!-- Hair sweep line 3 (outermost) -->
+    <path stroke-width="1.0"
+      d="M 106 12 C 124 8, 146 20, 152 40 C 158 58, 154 76, 144 88"/>
+
+    <!-- BUN — low bun at back of head, right side -->
+    <path stroke-width="1.6"
+      d="M 134 78
+         C 142 80, 152 86, 156 96
+         C 160 106, 156 118, 146 122
+         C 138 126, 128 122, 124 114
+         C 120 106, 124 96, 132 92
+         C 136 90, 140 92, 142 97"/>
+
+    <!-- Bun inner swirl -->
+    <path stroke-width="1.2"
+      d="M 136 90 C 146 88, 154 96, 150 106 C 146 114, 136 116, 130 110"/>
+
+    <!-- Bun ribbon / wrap detail -->
+    <path stroke-width="1.1"
+      d="M 124 108 C 128 112, 136 114, 142 110"/>
+
+    <!-- Loose strand 1 falling from bun downward -->
+    <path stroke-width="1.3"
+      d="M 148 118 C 152 128, 150 140, 144 150 C 138 160, 130 166, 124 172"/>
+
+    <!-- Loose strand 2 -->
+    <path stroke-width="1.1"
+      d="M 154 114 C 160 126, 158 142, 150 154 C 144 164, 136 170, 130 176"/>
+
+    <!-- Loose strand 3 (shorter) -->
+    <path stroke-width="0.9"
+      d="M 144 124 C 148 134, 146 146, 138 156"/>
+
+    <!-- Wisp near face / forehead -->
+    <path stroke-width="1.0"
+      d="M 92 22 C 86 30, 84 40, 86 50"/>
+    <path stroke-width="0.9"
+      d="M 88 24 C 82 34, 81 46, 84 56"/>
+
   </g>
-  <!-- KIMA - bold black serif -->
-  <text x="100" y="186" font-family="'Playfair Display', 'Times New Roman', Georgia, serif"
-    font-size="52" font-weight="900" text-anchor="middle" fill="#111111" letter-spacing="4">KIMA</text>
-  <!-- Beauty Lounge - gold italic script -->
-  <text x="100" y="210" font-family="'Cormorant Garamond', 'Palatino Linotype', Georgia, serif"
-    font-size="19" font-weight="400" font-style="italic" text-anchor="middle" fill="#c9a84c" letter-spacing="2">Beauty Lounge</text>
+
+  <!-- ── TEXT — KIMA bold black ── -->
+  <!-- The silhouette sits above & overlaps the K and A slightly -->
+  <text
+    x="110" y="198"
+    font-family="'Playfair Display', 'Times New Roman', Georgia, serif"
+    font-size="72"
+    font-weight="900"
+    text-anchor="middle"
+    fill="#111111"
+    letter-spacing="5"
+  >KIMA</text>
+
+  <!-- ── TEXT — Beauty Lounge gold italic ── -->
+  <text
+    x="110" y="228"
+    font-family="'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Georgia, serif"
+    font-size="22"
+    font-weight="400"
+    font-style="italic"
+    text-anchor="middle"
+    fill="#c9a84c"
+    letter-spacing="3"
+  >Beauty Lounge</text>
+
 </svg>`;
 }
 
@@ -156,7 +235,7 @@ function renderNavbar() {
   const nav = document.getElementById('navbar');
   if (!nav) return;
   nav.innerHTML = `
-    <div class="nav-logo kima-logo sm">${kimaLogo(44)}</div>
+    <div class="nav-logo kima-logo sm" style="display:flex;align-items:center;">${kimaLogo(52)}</div>
     <ul class="nav-links">
       <li><a href="#hero" class="active" onclick="scrollToSection('hero');return false;">${t('home')}</a></li>
       <li><a href="#services" onclick="scrollToSection('services');return false;">${t('services')}</a></li>
@@ -200,11 +279,11 @@ function renderHero() {
     <div class="hero-particles"></div>
     <div class="hero-content">
       <div class="hero-logo-wrap">
-        <div class="hero-logo-ring"></div>
-        <div class="hero-logo-ring"></div>
-        <div class="kima-logo lg">${kimaLogo(160)}</div>
+        <div class="hero-logo-glow"></div>
+        <div class="kima-logo hero-logo-svg" style="display:inline-flex;align-items:center;justify-content:center;">
+          ${kimaLogo(220)}
+        </div>
       </div>
-      <h1 class="hero-title">KIMA Beauty Lounge</h1>
       <p class="hero-subtitle-ar">${App.data.meta.taglineAr}</p>
       <p class="hero-subtitle-fr">${App.data.meta.taglineFr}</p>
       <div class="urgency-badge">${t('urgencyBadge')}</div>

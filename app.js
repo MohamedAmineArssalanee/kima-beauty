@@ -78,6 +78,18 @@ function t(key) { return App.data?.translations?.[App.lang]?.[key] || key; }
    Viewbox 220×260 — logo + text only, no background shape
 ══════════════════════════════════════════ */
 function kimaLogo(height = 48) {
+  const h = height;
+  // Use the actual KIMA logo image — transparent PNG with white/gray background removed via mix-blend-mode
+  return `<img
+    src="kima-logo.png"
+    alt="KIMA Beauty Lounge"
+    class="kima-logo-img"
+    style="height:${h}px;width:auto;display:block;"
+  />`;
+}
+
+// ── LEGACY SVG kept for fallback reference only — not used ──
+function kimaLogoSVG_unused(height = 48) {
   const aspect = 220 / 260;
   const w = Math.round(height * aspect);
   const h = height;

@@ -11,7 +11,7 @@
   <meta property="og:type" content="business.local"/>
   <meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80"/>
   <meta name="theme-color" content="#c9a84c"/>
-  <title>KIMA Beauty Lounge — لمسة أنثوية راقية</title>
+  <title>KIMA Beauty Lounge — لمسة أنوثة راقية</title>
 
   <script type="application/ld+json">
   {
@@ -94,30 +94,7 @@
       height: auto !important;
     }
 
-    /* Dark theme: make black KIMA text cream-colored for readability */
-    [data-theme="dark"] .hero-logo-svg svg text:nth-child(1),
-    [data-theme="dark"] #navbar svg text:nth-child(1),
-    [data-theme="dark"] #footer svg text:nth-child(1),
-    [data-theme="dark"] .booking-deco-logo svg text:nth-child(1),
-    [data-theme="dark"] .admin-logo svg text:nth-child(1),
-    [data-theme="dark"] .modal-watermark svg text:nth-child(1) {
-      fill: #ece4d0 !important;
-    }
-
-    /* Light theme: keep KIMA text black */
-    [data-theme="light"] .hero-logo-svg svg text:nth-child(1),
-    [data-theme="light"] #navbar svg text:nth-child(1),
-    [data-theme="light"] #footer svg text:nth-child(1) {
-      fill: #111111 !important;
-    }
-
-    /* Gold strokes adapt by theme */
-    [data-theme="light"] .hero-logo-svg svg g {
-      stroke: #a87830 !important;
-    }
-    [data-theme="light"] .hero-logo-svg svg text:nth-child(2) {
-      fill: #a87830 !important;
-    }
+    /* Logo image is handled via styles.css — no SVG text overrides needed */
   </style>
 </head>
 <body dir="rtl">

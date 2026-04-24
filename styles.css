@@ -80,11 +80,59 @@ img { display: block; max-width: 100%; }
 ::-webkit-scrollbar-track { background: var(--bg-secondary); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-/* ── KIMA Logo SVG ── */
+/* ── KIMA Logo SVG (legacy) ── */
 .kima-logo svg { width: auto; }
 .kima-logo.sm svg { height: 48px; }
 .kima-logo.md svg { height: 80px; }
 .kima-logo.lg svg { height: 160px; }
+
+/* ── KIMA Logo Image ── */
+.kima-logo-img {
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+}
+
+/* Dark theme: the logo has a light/white background — use mix-blend-mode to integrate it */
+[data-theme="dark"] .kima-logo-img {
+  mix-blend-mode: lighten;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Light theme: invert logo to show dark on light background cleanly */
+[data-theme="light"] .kima-logo-img {
+  mix-blend-mode: multiply;
+  filter: brightness(1) contrast(1.02);
+}
+
+/* Hero logo sizing */
+.hero-logo-svg .kima-logo-img {
+  height: clamp(180px, 45vw, 300px) !important;
+  width: auto !important;
+  filter: drop-shadow(0 4px 24px rgba(201,168,76,0.35));
+}
+
+[data-theme="dark"] .hero-logo-svg .kima-logo-img {
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 4px 24px rgba(201,168,76,0.4)) brightness(1.05);
+}
+
+[data-theme="light"] .hero-logo-svg .kima-logo-img {
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 4px 18px rgba(201,168,76,0.3));
+}
+
+/* Navbar logo */
+.nav-logo .kima-logo-img { height: 52px !important; }
+
+/* Booking deco logo */
+.booking-deco-logo .kima-logo-img { height: 90px !important; }
+
+/* Footer logo */
+.footer-logo .kima-logo-img { height: 56px !important; }
+
+/* Admin logo */
+.admin-logo .kima-logo-img { height: 48px !important; }
 
 /* ── NAVBAR ── */
 #navbar {
